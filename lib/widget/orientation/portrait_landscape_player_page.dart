@@ -12,12 +12,28 @@ class _PortraitLandscapePlayerPageState extends State<PortraitLandscapePlayerPag
   late VideoPlayerController controller;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    controller = VideoPlayerController.asset('videos/vid2.mp4')
+      ..addListener(() => setState(() {}))
+      ..setLooping(true)
+      ..initialize().then((_) => controller.play());
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(toolbarHeight: 0,),
-      body: const Center(
-        child: Text('portrait and landscape player page'),
-      ),
+      body: VideoPlayerBothWidget(controller: controller),
     );
   }
 }

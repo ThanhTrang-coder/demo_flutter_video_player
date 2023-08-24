@@ -14,9 +14,8 @@ class NetworkPlayerWidget extends StatefulWidget {
 }
 
 class _NetworkPlayerWidgetState extends State<NetworkPlayerWidget> {
-  static const urlNetwork = 'https://www.youtube.com/watch?v=QouidTqzeTE';
-  final textController = TextEditingController(text: urlNetwork);
-  VideoPlayerController? controller;
+  final textController = TextEditingController(text: urlLandscapeVideo);
+  late VideoPlayerController controller;
 
   @override
   void initState() {
@@ -26,13 +25,13 @@ class _NetworkPlayerWidgetState extends State<NetworkPlayerWidget> {
     controller = VideoPlayerController.networkUrl(Uri.parse(textController.text))
       ..addListener(() => setState(() {}))
       ..setLooping(true)
-      ..initialize().then((_) => controller?.play());
+      ..initialize().then((_) => controller.play());
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    controller?.dispose();
+    controller.dispose();
     super.dispose();
   }
 
@@ -42,7 +41,7 @@ class _NetworkPlayerWidgetState extends State<NetworkPlayerWidget> {
       alignment: Alignment.center,
       child: Column(
         children: [
-          VideoPlayerWidget(controller: controller!),
+          VideoPlayerWidget(controller: controller),
           buildTextField(),
         ],
       ),
@@ -67,7 +66,7 @@ class _NetworkPlayerWidgetState extends State<NetworkPlayerWidget> {
             controller = VideoPlayerController.networkUrl(Uri.parse(textController.text))
               ..addListener(() => setState(() {}))
               ..setLooping(true)
-              ..initialize().then((_) => controller?.play());
+              ..initialize().then((_) => controller.play());
           }
         ),
       ],

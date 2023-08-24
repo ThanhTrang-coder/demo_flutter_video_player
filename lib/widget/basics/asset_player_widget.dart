@@ -11,7 +11,7 @@ class AssetPlayerWidget extends StatefulWidget {
 }
 
 class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
-  final asset = 'videos/vid.mp4';
+  final asset = 'videos/vid2.mp4';
   late VideoPlayerController controller;
 
   @override
